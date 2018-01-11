@@ -50,6 +50,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "CustomerForm";
             this.Text = "Customers List Form";
+            this.Load += new System.EventHandler(this.CustomerForm_Load_1);
             this.ResumeLayout(false);
 
         }
