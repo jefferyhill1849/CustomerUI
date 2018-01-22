@@ -18,8 +18,13 @@ using TechSupportDB;
 
 namespace CustomerUI
 {
-    public partial class CustomerForm : Form
+    public partial class frmCustomer : Form
     {
+        Customer customer;
+        public  frmCustomer()
+        {
+         InitializeComponent();
+        }
 
         private void CustomerForm_Load_1(object sender, EventArgs e)
         {
@@ -33,14 +38,15 @@ namespace CustomerUI
                     for (int i = 0; i < customerList.Count; i++)
                     {
                         customer = customerList[i];
-                        lvCustomer.Items.Add(customer.CustomID.ToString());
-                        lvCustomer.Items[i].SubItems.Add(customer.Name.ToString());
-                        lvCustomer.Items[i].SubItems.Add(customer.Address.ToString());
-                        lvCustomer.Items[i].SubItems.Add(customer.City.ToString());
-                        lvCustomer.Items[i].SubItems.Add(customer.State.ToString());
-                        lvCustomer.Items[i].SubItems.Add(customer.ZipCode.ToString());
-                        lvCustomer.Items[i].SubItems.Add(customer.Phone.ToString());
-                        lvCustomer.Items[i].SubItems.Add(customer.Email.ToString());
+                        txtCustID.Text = customer.CustomID.ToString();
+                        txtName.Text = customer.Name;
+                        txtAddress.Text = customer.Address;
+                        txtCity.Text = customer.City;
+                        txtState.Text = customer.State;
+                        txtZip.Text = customer.ZipCode.ToString();
+                        txtPhone.Text = customer.Phone;
+                        txtEmail.Text = customer.Email;
+                        
                     }
                 }
                 else
@@ -53,6 +59,78 @@ namespace CustomerUI
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
+
         }
-    }
+        private void GetCustomer(int customID)
+        {
+            try
+            {
+                customer = CustomerDB.GetCustomer(customID)
+                    if (customer == null)
+                    MessageBox.Show("No customer found with this ID." +
+                        "Please try again.", "Customer Not Found");
+                else
+                    this.DisplayCustomer();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
+
+        private void btnNewCustomer_Click(object sender, EventArgs e)
+        {
+            frmAddCustomer addAddCustomerForm = new frmAddCustomer();
+            addAddCustomerForm.addCustomer = true;
+            DialogResult result = addAddCustomerForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                customer = addAddCustomerForm.customer;
+                txtCustID.Text = customer.CustomID.ToString();
+                this.DisplayCustomer();
+            }
+        }
+        private void DisplayCustomer()
+        {
+            txtCustID.Text = customer.CustomID.ToString();
+            txtName.Text = customer.Name;
+            txtAddress.Text = customer.Address;
+            txtCity.Text = customer.City;
+            txtState.Text = customer.State;
+            txtPhone.Text = customer.Phone;
+            txtZip.Text = customer.ZipCode;
+            txtEmail.Text = customer.Email;
+        }
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            frmAddCustomer addCustomerForm = new frmAddCustomer();
+            addCustomerForm.addCustomer = false;
+            addCustomerForm.customer = customer;
+            DialogResult result = addCustomerForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                customer = addCustomerForm.customer;
+                this.DisplayCustomer();
+            }
+            else if (result == DialogResult.Retry)
+            {
+                this.ClearControls();
+                this.GetCustomer(customer.CustomID);
+            }
+        }
+        private void ClearControls()
+        {
+            txtName.Text = "";
+            txtAddress.Text = "";
+            txtCity.Text = "";
+            txtState.Text = "";
+            txtZip.Text = "";
+            txtPhone.Text = "";
+            txtEmail.Text = "";
+            btnModify.Enabled = false;
+        }
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 }
