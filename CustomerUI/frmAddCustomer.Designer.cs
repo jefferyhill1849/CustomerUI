@@ -41,7 +41,9 @@
             this.txtNewPhone = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtNewEmail = new System.Windows.Forms.TextBox();
-            this.txtNewState = new System.Windows.Forms.TextBox();
+            this.btnAccept = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.cboStates = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblName
@@ -149,19 +151,42 @@
             this.txtNewEmail.Size = new System.Drawing.Size(248, 20);
             this.txtNewEmail.TabIndex = 13;
             // 
-            // txtNewState
+            // btnAccept
             // 
-            this.txtNewState.Location = new System.Drawing.Point(67, 127);
-            this.txtNewState.Name = "txtNewState";
-            this.txtNewState.Size = new System.Drawing.Size(156, 20);
-            this.txtNewState.TabIndex = 14;
+            this.btnAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccept.Location = new System.Drawing.Point(258, 255);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(75, 23);
+            this.btnAccept.TabIndex = 15;
+            this.btnAccept.Text = "Accept";
+            this.btnAccept.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(12, 255);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // cboStates
+            // 
+            this.cboStates.FormattingEnabled = true;
+            this.cboStates.Location = new System.Drawing.Point(67, 126);
+            this.cboStates.Name = "cboStates";
+            this.cboStates.Size = new System.Drawing.Size(121, 21);
+            this.cboStates.TabIndex = 17;
             // 
             // frmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 262);
-            this.Controls.Add(this.txtNewState);
+            this.ClientSize = new System.Drawing.Size(345, 290);
+            this.Controls.Add(this.cboStates);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.txtNewEmail);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.txtNewPhone);
@@ -197,6 +222,8 @@
         private System.Windows.Forms.TextBox txtNewPhone;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.TextBox txtNewEmail;
-        private System.Windows.Forms.TextBox txtNewState;
+        private System.Windows.Forms.Button btnAccept;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox cboStates;
     }
 }

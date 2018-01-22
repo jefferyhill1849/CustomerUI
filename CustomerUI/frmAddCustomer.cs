@@ -21,6 +21,7 @@ using VendorMaintenance;
 
 namespace CustomerUI
 {
+    
     public partial class frmAddCustomer : Form
     {
         public bool addCustomer;
@@ -48,7 +49,7 @@ namespace CustomerUI
             txtNewName.Text = customer.Name;
             txtNewAddress.Text = customer.Address;
             txtNewCity.Text = customer.City;
-            txtNewState.Text = customer.State;
+            cboStates.Text = customer.State;
             txtNewPhone.Text = customer.Phone;
             txtNewZip.Text = customer.ZipCode;
             txtNewEmail.Text = customer.Email;
@@ -63,7 +64,7 @@ namespace CustomerUI
                     this.PutCustomerData(customer);
                     try
                     {
-                        customer.CustomID = CustomerDB.AddCustomer(customer);
+                        customer.CustomID = CustomerDBDAL.AddCustomer(customer);
                         this.DialogResult = DialogResult.OK;
                     }
                     catch (Exception ex)
@@ -78,7 +79,7 @@ namespace CustomerUI
                     this.PutCustomerData(newCustomer);
                     try
                     {
-                        if (!CustomerDB.UpdateCustomer(customer, newCustomer))
+                        if (!CustomerDBDAL.UpdateCustomer(customer, newCustomer))
                         {
                             MessageBox.Show("Another user has updated or " +
                                 "deleted that customer.", "Database Error");
@@ -102,7 +103,7 @@ namespace CustomerUI
             if (Validator.IsPresent(txtNewName) &&
                 Validator.IsPresent(txtNewAddress) &&
                 Validator.IsPresent(txtNewCity) &&
-                Validator.IsPresent(txtNewState) &&
+                Validator.IsPresent(cboStates) &&
                 Validator.IsInt32(txtNewZip) &&
                 Validator.IsPresent(txtNewPhone) &&
                 Validator.IsPresent(txtNewEmail))
@@ -134,7 +135,7 @@ namespace CustomerUI
             customer.Address = txtNewAddress.Text;
             customer.City = txtNewCity.Text;
             customer.ZipCode = txtNewZip.Text;
-            customer.State = txtNewState.Text;
+            customer.State = cboStates.Text;
             customer.Phone = txtNewPhone.Text;
             customer.Email = txtNewEmail.Text;
         }

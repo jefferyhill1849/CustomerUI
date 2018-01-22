@@ -21,9 +21,9 @@ namespace CustomerUI
     public partial class frmCustomer : Form
     {
         Customer customer;
-        public  frmCustomer()
+        public frmCustomer()
         {
-         InitializeComponent();
+            InitializeComponent();
         }
 
         private void CustomerForm_Load_1(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace CustomerUI
                         txtZip.Text = customer.ZipCode.ToString();
                         txtPhone.Text = customer.Phone;
                         txtEmail.Text = customer.Email;
-                        
+
                     }
                 }
                 else
@@ -65,7 +65,7 @@ namespace CustomerUI
         {
             try
             {
-                customer = CustomerDB.GetCustomer(customID)
+                customer = CustomerDBDAL.GetCustomer(customID);
                     if (customer == null)
                     MessageBox.Show("No customer found with this ID." +
                         "Please try again.", "Customer Not Found");
@@ -133,4 +133,30 @@ namespace CustomerUI
         {
             this.Close();
         }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (this.bindingSource1.Position + 1 < this.bindingSource1.Count)
+            {
+                this.bindingSource1.MoveNext();
+
+            }
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            this.bindingSource1.MovePrevious();
+        }
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            this.bindingSource1.MoveFirst();
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            this.bindingSource1.MoveLast();
+        }
+
+    }
 }

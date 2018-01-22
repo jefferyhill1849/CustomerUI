@@ -92,6 +92,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\CustomerDB.CustomerDBDAL.datasource" />
+    <None Include="Properties\DataSources\Customers.Customer.datasource" />
+    <None Include="Properties\DataSources\State.StateBLL.datasource" />
+    <None Include="Properties\DataSources\StateDB.PayablesDB.datasource" />
+    <None Include="Properties\DataSources\StateDB.State.datasource" />
+    <None Include="Properties\DataSources\TechSupportDB.TechSupportDBClass.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
